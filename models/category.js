@@ -9,7 +9,11 @@ let categorySchema = mongoose.Schema({
     description:{
         type:String,
         default:""
-    }
+    },
+    isDeleted: {
+        type: Boolean,
+        default: false
+      }
 },{
     timestamps:true
 })
