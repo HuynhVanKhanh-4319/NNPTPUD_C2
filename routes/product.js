@@ -53,5 +53,21 @@ router.put('/:id', async function(req, res, next) {
     })
   }
 });
+router.delete('/:id', async function(req, res, next) {
+  try {
+    let product = await productSchema.findByIdAndUpdate(req.params.id, {
+      isDeleted: true
+    }, { new: true });
+    res.status(200).send({
+      success: true,
+      data: product
+    });
+  } catch (error) {
+    res.status(404).send({
+      success: false,
+      message: error.message
+    });
+  }
+});
 
 module.exports = router;

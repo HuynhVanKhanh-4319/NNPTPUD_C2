@@ -26,7 +26,11 @@ let productSchema = mongoose.Schema({
     categoryID:{
         type:String,
         required:true
-    }
+    },
+    isDeleted: {
+        type: Boolean,
+        default: false
+      }
 },{
     timestamps:true
 })
