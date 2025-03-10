@@ -23,5 +23,30 @@ module.exports = {
         }
         console.log(result);
         return result;
+      },
+      QueryUser: function (objQuery) {
+        console.log(objQuery);
+        let result = { isDeleted: false };
+    
+        if (objQuery.username) {
+          result.userName = new RegExp(objQuery.username, 'i');
+        }
+    
+        if (objQuery.fullname) {
+          result.fullName = new RegExp(objQuery.fullname, 'i');
+        }
+    
+        if (objQuery.loginCount) {
+          result.loginCount = {};
+          if (objQuery.loginCount.$gte) {
+            result.loginCount.$gte = Number(objQuery.loginCount.$gte);
+          }
+          if (objQuery.loginCount.$lte) {
+            result.loginCount.$lte = Number(objQuery.loginCount.$lte);
+          }
+        }
+        console.log(result);
+        return result;
       }
+    
 }

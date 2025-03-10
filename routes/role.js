@@ -44,10 +44,18 @@ router.put('/:id', async function(req, res, next) {
 // Delete a role by ID (soft delete)
 router.delete('/:id', async function(req, res, next) {
   try {
-    let role = await roleSchema.findByIdAndUpdate(req.params.id, { isDeleted: true }, { new: true });
-    res.send(role);
+    let role = await roleSchema.findByIdAndUpdate(req.params.id, {
+      isDeleted: true
+    }, { new: true });
+    res.status(200).send({
+      success: true,
+      data: role
+    });
   } catch (error) {
-    res.status(404).send({ message: error.message });
+    res.status(404).send({
+      success: false,
+      message: error.message
+    });
   }
 });
 
